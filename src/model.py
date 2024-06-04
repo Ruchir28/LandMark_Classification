@@ -13,6 +13,22 @@ class MyModel(nn.Module):
         # to size appropriately the output of your classifier, and if you use
         # the Dropout layer, use the variable "dropout" to indicate how much
         # to use (like nn.Dropout(p=dropout))
+        self.model = nn.Sequential(
+            # conv layer 1 
+            nn.Conv2d(3,16,3,padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2,stride=2),
+            # conv layer 2 
+            nn.Conv2d(16,32,3,padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2,stride=2),
+            # conv layer 3 
+            nn.Conv2d(32,64,3,padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2,stride=2),
+            nn.AvgPool2d(3),
+            
+        )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # YOUR CODE HERE: process the input tensor through the
